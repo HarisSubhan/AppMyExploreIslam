@@ -1,34 +1,75 @@
-import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import ChildDashboard from '@/app/child/ChildDashboard';
-import { ChildStackParamList } from '../types/navigation';
+import AssignmentPage from '@/app/child/screens/AssignmentPage';
+import BookPage from '@/app/child/screens/BookPage';
+import QuizPage from '@/app/child/screens/QuizPage';
+import VideoPage from '@/app/child/screens/VideoPage';
 
+import { Ionicons } from '@expo/vector-icons';
+import CustomDrawer from '@/components/child/CustomDrawer';
 
-// Import screens
-
-// import ChildBookpage from '../pages/ChildPortal/pages/ChildBookpage';
-// import BookDetail from '../components/child/BookDetail';
-// import ChildVideopage from '../pages/ChildPortal/pages/ChildVideopage';
-// import VideoDetail from '../components/child/VideoDetail';
-// import QuizPage from '../pages/ChildPortal/pages/QuizPage';
-// import AssignmentsPage from '../pages/ChildPortal/pages/AssignmentsPage';
-// import QuizStart from '../components/child/QuizStart';
-
-
-
-const Stack = createNativeStackNavigator<ChildStackParamList>();
+const Drawer = createDrawerNavigator();
 
 export default function ChildStack() {
   return (
-    <Stack.Navigator initialRouteName="ChildDashboard">
-      <Stack.Screen name="ChildDashboard" component={ChildDashboard} />
-      {/* <Stack.Screen name="ChildBookpage" component={ChildBookpage} />
-      <Stack.Screen name="BookDetail" component={BookDetail} />
-      <Stack.Screen name="ChildVideopage" component={ChildVideopage} />
-      <Stack.Screen name="VideoDetail" component={VideoDetail} />
-      <Stack.Screen name="QuizPage" component={QuizPage} />
-      <Stack.Screen name="QuizStart" component={QuizStart} />
-      <Stack.Screen name="AssignmentsPage" component={AssignmentsPage} /> */}
-    </Stack.Navigator>
+    <Drawer.Navigator
+      drawerContent={(props) => <CustomDrawer {...props} />}
+      screenOptions={{
+        headerShown: false,
+        drawerActiveBackgroundColor: '#2c7873',
+        drawerActiveTintColor: '#fff',
+        drawerInactiveTintColor: '#333',
+        drawerLabelStyle: {
+          fontFamily: 'ScheherazadeNew-Regular',
+          fontSize: 16,
+        },
+      }}
+    >
+      <Drawer.Screen 
+        name="Dashboard" 
+        component={ChildDashboard}
+        options={{
+          drawerIcon: ({color}) => (
+            <Ionicons name="home" size={20} color={color} />
+          )
+        }}
+      />
+      <Drawer.Screen 
+        name="Books" 
+        component={BookPage}
+        options={{
+          drawerIcon: ({color}) => (
+            <Ionicons name="book" size={20} color={color} />
+          )
+        }} 
+      />
+      <Drawer.Screen 
+        name="Videos" 
+        component={VideoPage}
+        options={{
+          drawerIcon: ({color}) => (
+            <Ionicons name="play-circle" size={20} color={color} />
+          )
+        }}
+      />
+      <Drawer.Screen 
+        name="Assignments" 
+        component={AssignmentPage}
+        options={{
+          drawerIcon: ({color}) => (
+            <Ionicons name="document-text" size={20} color={color} />
+          )
+        }}
+      />
+      <Drawer.Screen 
+        name="Quizzes" 
+        component={QuizPage}
+        options={{
+          drawerIcon: ({color}) => (
+            <Ionicons name="help-circle" size={20} color={color} />
+          )
+        }}
+      />
+    </Drawer.Navigator>
   );
 }

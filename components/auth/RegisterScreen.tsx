@@ -14,7 +14,7 @@ const RegisterScreen = () => {
 
   const handleRegister = () => {
     // TODO: Add registration logic here (API call, validation, etc.)
-    console.log({ name, email, password });
+    console.log({ name, email,role, password });
     navigation.navigate('Login'); // Go back to login after successful registration
   };
 

@@ -1,27 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import AuthStack from './AuthStack';
-import ChildStack from './ChildStack';
-import ParentStack from './ParentStack';
 import AdminStack from './AdminStack';
-import { RootState } from '../store/store';
+import ChildStack from './ChildStack';
+import AuthStack from './AuthStack';
+import ParentStack from './ParentStack';
 
-export default function AppNavigator() {
-  const user = useSelector((state: RootState) => state.auth.user);
-
-  if (!user) {
-    return <AuthStack />; // not logged in
-  }
-
-  // Show stack based on role
-  switch (user.role) {
-    case 'child':
-      return <ChildStack />;
-    case 'parent':
-      return <ParentStack />;
-    case 'admin':
-      return <AdminStack />;
-    default:
-      return <AuthStack />; // fallback
-  }
+export default function Navigation({ userRole }: { userRole: string | null }) {
+  if (userRole === 'admin') return <AdminStack />;
+  if (userRole === 'child') return <ChildStack />;
+  if (userRole === 'parent') return <ParentStack />;
+  return <AuthStack />;
 }
+
+

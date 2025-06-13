@@ -4,14 +4,13 @@ export type AuthStackParamList = {
   };
 
 
-  export type ChildStackParamList = {
-    ChildDashboard: undefined;
-    ChildBookpage: undefined;
-    BookDetail: { bookId: string };
-    ChildVideopage: undefined;
-    VideoDetail: { videoId: string };
-    QuizPage: undefined;
-    QuizStart: { quizid: string };
-    AssignmentsPage: undefined;
-  };
+
+  // types/navigation.ts
+export type RootDrawerParamList = {
+  Dashboard: undefined;
+  Books: undefined;
+  Videos: undefined;
+  Assignments: undefined;
+  Quizzes: undefined;
+};
   

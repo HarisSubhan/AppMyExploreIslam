@@ -3,6 +3,9 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'reac
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { AuthStackParamList } from '../../types/navigation';
+import AdminHome from './../../app/admin/AdminHome';
+import { ChildDashboard } from '@/app/child/ChildDashboard';
+import ParentHome from './../../app/parent/ParentHome';
 
 export default function LoginScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>();
@@ -20,10 +23,9 @@ export default function LoginScreen() {
     if (role.toLowerCase() === 'admin') {
       navigation.navigate('AdminHome');
     } else if (role.toLowerCase() === 'child') {
-      navigation.navigate('child');
-    } else if (role.toLowerCase()==='parent'){
+      navigation.navigate('ChildDashboard');
+    } else if (role.toLowerCase() === 'parent') {
       navigation.navigate('ParentHome');
-    }
     }
   };
 
