@@ -1,11 +1,9 @@
-import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function VideoPage() {
+export default function Books() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Video Page</Text>
-      {/* Admin specific content */}
+      <Text style={styles.title}>Books Page</Text>
     </View>
   );
 }

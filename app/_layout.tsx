@@ -1,16 +1,13 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-
-import { store } from '@/store/store';
-import Navigation from '@/navigation';
-
+import { Stack } from 'expo-router';
+import { AuthProvider } from '@/context/AuthContext';
 
 export default function RootLayout() {
   return (
-    <Provider store={store}>
-      
-        <Navigation />
-      
-    </Provider>
+    <AuthProvider>
+      <Stack>
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+      </Stack>
+    </AuthProvider>
   );
 }

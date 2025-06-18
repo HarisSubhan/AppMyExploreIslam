@@ -1,11 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
-export default function QuizPage() {
+export default function Videos() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Quiz Page</Text>
-      {/* Admin specific content */}
+      <Text style={styles.title}>Video Page</Text>
     </View>
   );
 }

@@ -1,75 +1,51 @@
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import ChildDashboard from '@/app/child/ChildDashboard';
-import AssignmentPage from '@/app/child/screens/AssignmentPage';
-import BookPage from '@/app/child/screens/BookPage';
-import QuizPage from '@/app/child/screens/QuizPage';
-import VideoPage from '@/app/child/screens/VideoPage';
-
+import { Drawer } from 'expo-router/drawer';
 import { Ionicons } from '@expo/vector-icons';
-import CustomDrawer from '@/components/child/CustomDrawer';
-
-const Drawer = createDrawerNavigator();
+import CustomDrawer from '@/components/CustomDrawer';
+import { useAuth } from '@/context/AuthContext';
+import { Redirect } from 'expo-router';
 
 export default function ChildStack() {
+  const { userRole } = useAuth();
+
+  if (userRole !== 'child') {
+    return <Redirect href="/login" />;
+  }
+
   return (
-    <Drawer.Navigator
+    <Drawer
       drawerContent={(props) => <CustomDrawer {...props} />}
       screenOptions={{
-        headerShown: false,
         drawerActiveBackgroundColor: '#2c7873',
         drawerActiveTintColor: '#fff',
         drawerInactiveTintColor: '#333',
         drawerLabelStyle: {
           fontFamily: 'ScheherazadeNew-Regular',
           fontSize: 16,
+          marginLeft: -15,
         },
       }}
     >
       <Drawer.Screen 
-        name="Dashboard" 
-        component={ChildDashboard}
+        name="index"
         options={{
-          drawerIcon: ({color}) => (
-            <Ionicons name="home" size={20} color={color} />
-          )
+          title: 'Dashboard',
+          drawerIcon: ({ color }) => <Ionicons name="home-outline" size={22} color={color} />,
         }}
       />
       <Drawer.Screen 
-        name="Books" 
-        component={BookPage}
+        name="books"
         options={{
-          drawerIcon: ({color}) => (
-            <Ionicons name="book" size={20} color={color} />
-          )
-        }} 
-      />
-      <Drawer.Screen 
-        name="Videos" 
-        component={VideoPage}
-        options={{
-          drawerIcon: ({color}) => (
-            <Ionicons name="play-circle" size={20} color={color} />
-          )
+          title: 'Books',
+          drawerIcon: ({ color }) => <Ionicons name="book-outline" size={22} color={color} />,
         }}
       />
       <Drawer.Screen 
-        name="Assignments" 
-        component={AssignmentPage}
+        name="videos"
         options={{
-          drawerIcon: ({color}) => (
-            <Ionicons name="document-text" size={20} color={color} />
-          )
+          title: 'Videos',
+          drawerIcon: ({ color }) => <Ionicons name="play-circle-outline" size={22} color={color} />,
         }}
       />
-      <Drawer.Screen 
-        name="Quizzes" 
-        component={QuizPage}
-        options={{
-          drawerIcon: ({color}) => (
-            <Ionicons name="help-circle" size={20} color={color} />
-          )
-        }}
-      />
-    </Drawer.Navigator>
+    </Drawer>
   );
 }

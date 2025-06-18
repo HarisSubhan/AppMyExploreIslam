@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-export default function AssignmentPage() {
+export default function quizzes() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Assignment Page</Text>
+      <Text style={styles.title}>Quiz Page</Text>
       {/* Admin specific content */}
     </View>
   );

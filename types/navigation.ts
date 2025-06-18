@@ -1,16 +1,20 @@
-export type AuthStackParamList = {
-    Login: undefined;
-    Register: undefined;
-  };
-
-
-
-  // types/navigation.ts
-export type RootDrawerParamList = {
-  Dashboard: undefined;
-  Books: undefined;
-  Videos: undefined;
-  Assignments: undefined;
-  Quizzes: undefined;
+export type RootStackParamList = {
+  '/(auth)/login': undefined;
+  '/(auth)/register': undefined;
+  '/(child)': undefined;
+  '/(parent)': undefined;
+  '/(admin)': undefined;
 };
-  
+
+export type AuthStackParamList = {
+  'login': undefined;
+  'register': undefined;
+};
+
+export type ChildStackParamList = {
+  'index': undefined;
+  'books': undefined;
+  'videos': undefined;
+  'assignments': undefined;
+  'quizzes': undefined;
+};

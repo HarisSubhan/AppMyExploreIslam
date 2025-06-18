@@ -1,23 +1,21 @@
-import 'react-native-gesture-handler'; // Must be at the top
-import { NavigationContainer } from '@react-navigation/native';
-import { View, Image } from 'react-native';
-import Navigation from '@/navigation';
-import { useState } from 'react';
+// app/index.tsx
+import { Redirect, usePathname } from 'expo-router';
 
-export default function Index() {
-  const [loading, setLoading] = useState(true);
+export default function RootRedirect() {
+  const pathname = usePathname();
 
-  if (loading) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
-        <Image source={require('../assets/images/logo.png')} style={{ width: 200, height: 200 }} />
-      </View>
-    );
+  if (pathname === '/') {
+    return <Redirect href="/auth/login" />;
   }
 
-  return (
-    <NavigationContainer>
-      <Navigation userRole="child" />
-    </NavigationContainer>
-  );
+  if (pathname === '/login') {
+    return <Redirect href="/auth/login" />;
+  }
+
+  if (pathname === '/register') {
+    return <Redirect href="/auth/RegisterScreen" />;
+  }
+
+  // If none of the above, render nothing (or you could redirect to a 404)
+  return null;
 }
